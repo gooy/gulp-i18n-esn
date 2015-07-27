@@ -1,9 +1,9 @@
 /*eslint-env node */
 var gulp = require("gulp");
-var _ = require("lodash");
+var deepExtend = require("deep-extend");
 
 //create a pkg variable that hold the package.json with some defaults applied
-module.exports.pkg = gulp.pkg = _.merge({
+module.exports.pkg = gulp.pkg = deepExtend({
   basePath: __dirname,
   directories: {
     lib: "src",
