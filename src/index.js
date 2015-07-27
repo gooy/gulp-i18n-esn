@@ -1,16 +1,16 @@
-import through from "through2";
-import gutil from "gulp-util";
-import fs from "graceful-fs";
-import deepExtend from "deep-extend";
-import File from "vinyl";
-import {getExtension, hashFromString} from "./utils";
+import through from 'through2';
+import gutil from 'gulp-util';
+import fs from 'graceful-fs';
+import deepExtend from 'deep-extend';
+import File from 'vinyl';
+import {getExtension, hashFromString} from './utils';
 
-const minimist = require("minimist");
+const minimist = require('minimist');
 
 let knownOptions = {
-  string: "env",
+  string: 'env',
   default: {
-    env: process.env.NODE_ENV || "production",
+    env: process.env.NODE_ENV || 'production',
     verbose: false,
   },
 };
@@ -18,7 +18,7 @@ let knownOptions = {
 let cmdOptions = minimist(process.argv.slice(2), knownOptions);
 
 let PluginError = gutil.PluginError;
-const PLUGIN_NAME = "gulp-i18n-esn";
+const PLUGIN_NAME = 'gulp-i18n-esn';
 
 export class Plugin{
 
@@ -41,17 +41,17 @@ export class Plugin{
     let ext = getExtension(path);
 
     switch(ext){
-      case "html":
-        if(cmdOptions.verbose) gutil.log("parse HTML:", path);
+      case 'html':
+        if(cmdOptions.verbose) gutil.log('parse HTML:', path);
         return this.parseHTML(data);
       default:
-        if(cmdOptions.verbose) gutil.log("parse JS:", path);
+        if(cmdOptions.verbose) gutil.log('parse JS:', path);
         return this.parseJavaScript(path);
     }
   }
 
   parseJavaScript(path){
-    let pos = path.lastIndexOf(".");
+    let pos = path.lastIndexOf('.');
     if(pos > -1) path = path.substr(0, pos);
 
     return System.import(path).then(mod=>{
@@ -71,7 +71,7 @@ export class Plugin{
 
   generateAllTranslations(){
     if(cmdOptions.verbose) {
-      gutil.log("extracted registry:");
+      gutil.log('extracted registry:');
       gutil.log(this.registry);
     }
 
@@ -115,7 +115,7 @@ export class Plugin{
 
     // we do not handle streams
     if (file.isStream()) {
-      this.emit("error", new PluginError(PLUGIN_NAME, "Streams are not supported!"));
+      this.emit('error', new PluginError(PLUGIN_NAME, 'Streams are not supported!'));
       return done();
     }
 
@@ -127,16 +127,16 @@ export class Plugin{
       }else if(path && fs.existsSync(path)){
         data = fs.readFileSync(path);
       }else{
-        this.emit("error", new PluginError(PLUGIN_NAME, "File has no content and is not readable"));
+        this.emit('error', new PluginError(PLUGIN_NAME, 'File has no content and is not readable'));
         return done();
       }
     }
 
-    let segments = file.path.split("/");
+    let segments = file.path.split('/');
     let lang = segments[segments.length - 2];
 
     if (file.isBuffer()) {
-      path = file.path.replace(process.cwd() + "/", "");
+      path = file.path.replace(process.cwd() + '/', '');
       data = file.contents.toString();
     }
 

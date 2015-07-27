@@ -1,17 +1,17 @@
-"use strict";
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.getExtension = getExtension;
 exports.hashFromString = hashFromString;
 
 function getExtension(path) {
-  return path.substr(path.lastIndexOf(".") + 1);
+  return path.substr(path.lastIndexOf('.') + 1);
 }
 
 function hashFromString(path, value, separator, hash) {
-  separator = separator || ".";
+  separator = separator || '.';
 
   if (path.indexOf(separator, path.length - separator.length) >= 0) {
     path = path.slice(0, -separator.length);

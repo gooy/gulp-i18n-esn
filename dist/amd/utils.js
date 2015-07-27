@@ -1,18 +1,18 @@
-define(["exports"], function (exports) {
-  "use strict";
+define(['exports'], function (exports) {
+  'use strict';
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(exports, '__esModule', {
     value: true
   });
   exports.getExtension = getExtension;
   exports.hashFromString = hashFromString;
 
   function getExtension(path) {
-    return path.substr(path.lastIndexOf(".") + 1);
+    return path.substr(path.lastIndexOf('.') + 1);
   }
 
   function hashFromString(path, value, separator, hash) {
-    separator = separator || ".";
+    separator = separator || '.';
 
     if (path.indexOf(separator, path.length - separator.length) >= 0) {
       path = path.slice(0, -separator.length);
@@ -20,6 +20,7 @@ define(["exports"], function (exports) {
 
     var parts = path.split(separator);
     var tmp = hash || {};
+    var obj = tmp;
 
     for (var x = 0; x < parts.length; x++) {
       if (x === parts.length - 1) {
@@ -29,7 +30,7 @@ define(["exports"], function (exports) {
       }
       tmp = tmp[parts[x]];
     }
-    return tmp;
+    return obj;
   }
 });
 //# sourceMappingURL=utils.js.map

@@ -5,13 +5,13 @@
  * @returns {string}  the extracted file extension
  */
 export function getExtension(path){
-  return path.substr(path.lastIndexOf(".") + 1);
+  return path.substr(path.lastIndexOf('.') + 1);
 }
 
 /**
  * Create a hash from a translation key.
  *
- * converts "foo.bar.baz" to:
+ * converts 'foo.bar.baz' to:
  *
  * foo:{
  *   bar: {
@@ -27,7 +27,7 @@ export function getExtension(path){
  * @returns {*|{}}
  */
 export function hashFromString(path, value, separator, hash){
-  separator = separator || ".";
+  separator = separator || '.';
 
   if(path.indexOf(separator, path.length - separator.length) >= 0){
     path = path.slice(0, -separator.length);
@@ -35,6 +35,7 @@ export function hashFromString(path, value, separator, hash){
 
   let parts = path.split(separator);
   let tmp = hash || {};
+  let obj = tmp;
 
   for(let x = 0; x < parts.length; x++){
     if(x === parts.length - 1){
@@ -44,5 +45,5 @@ export function hashFromString(path, value, separator, hash){
     }
     tmp = tmp[parts[x]];
   }
-  return tmp;
+  return obj;
 }

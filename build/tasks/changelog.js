@@ -1,15 +1,15 @@
-var gulp = require("gulp");
-var fs = require("fs");
-var changelog = require("conventional-changelog");
-var mkdirp = require("mkdirp");
+var gulp = require('gulp');
+var fs = require('fs');
+var changelog = require('conventional-changelog');
+var mkdirp = require('mkdirp');
 
 var dirs = gulp.pkg.directories;
 
 /**
  * Generates the changelog from git commit messages.
  */
-gulp.task("changelog", function(){
-  var outputFile = dirs.doc + "/CHANGELOG.md";
+gulp.task('changelog', function(){
+  var outputFile = dirs.doc + '/CHANGELOG.md';
   if(fs.existsSync(outputFile)) fs.unlinkSync(outputFile);
   if(!fs.existsSync(dirs.doc)) mkdirp.sync(dirs.doc);
 

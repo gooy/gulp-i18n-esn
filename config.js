@@ -1,3 +1,4 @@
+//noinspection Eslint
 System.config({
   "baseURL": "/",
   "transpiler": "babel",
@@ -14,6 +15,7 @@ System.config({
   }
 });
 
+//noinspection Eslint
 System.config({
   "map": {
     "babel": "npm:babel-core@5.2.17",
