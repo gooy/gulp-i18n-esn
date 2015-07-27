@@ -19,6 +19,7 @@ function hashFromString(path, value, separator, hash) {
 
   var parts = path.split(separator);
   var tmp = hash || {};
+  var obj = tmp;
 
   for (var x = 0; x < parts.length; x++) {
     if (x === parts.length - 1) {
@@ -28,6 +29,6 @@ function hashFromString(path, value, separator, hash) {
     }
     tmp = tmp[parts[x]];
   }
-  return tmp;
+  return obj;
 }
 //# sourceMappingURL=utils.js.map

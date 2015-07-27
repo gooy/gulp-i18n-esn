@@ -35,6 +35,7 @@ export function hashFromString(path, value, separator, hash){
 
   let parts = path.split(separator);
   let tmp = hash || {};
+  let obj = tmp;
 
   for(let x = 0; x < parts.length; x++){
     if(x === parts.length - 1){
@@ -44,5 +45,5 @@ export function hashFromString(path, value, separator, hash){
     }
     tmp = tmp[parts[x]];
   }
-  return tmp;
+  return obj;
 }
